@@ -4,9 +4,6 @@
     <meta name="robots" content="noindex, nofollow">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <meta http-equiv="refresh" content="2;url=https://www.goduck.io/download?_branch_match_id=1557185352188095906&utm_source=300247&utm_campaign=promotion&_branch_referrer=H4sIAAAAAAAAA8soKSkottLXT89PKU3OLivI00ssKNDLyczL1g%2BxcHcqTysoMDFIsq8rSk1LLSrKzEuPTyrKLy9OLbJ1zijKz00FABHHuIxAAAAA">
-    
     <title>正在安全连接 GoDuck 官方下载中心...</title>
     <style>
         body { font-family: system-ui, sans-serif; background: #f8fafc; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; color: #1e293b; }
@@ -25,13 +22,36 @@
     <h3>正在连接官方安全下载通道</h3>
     <p>正在为您配置专属 14 天专线加速补贴协议...<br>系统即将自动弹出安装包下载提示。</p>
     
-    <a href="https://www.goduck.io/download?_branch_match_id=1557185352188095906&utm_source=300247&utm_campaign=promotion&_branch_referrer=H4sIAAAAAAAAA8soKSkottLXT89PKU3OLivI00ssKNDLyczL1g%2BxcHcqTysoMDFIsq8rSk1LLSrKzEuPTyrKLy9OLbJ1zijKz00FABHHuIxAAAAA" class="btn-manual">若未弹出，请点此手动下载</a>
+    <a href="#" id="download-link" class="btn-manual">若未弹出，请点此手动下载</a>
 </div>
 
 <script>
-    // 延時 1.5 秒跳轉，給用戶足夠的心理緩衝與體驗
+    // 1. 取得來路域名 (Referer)
+    var ref = document.referrer.toLowerCase();
+    
+    // 2. 預設邀請碼
+    var code = "300247"; 
+    
+    // 3. 自動依據來源識別替換代碼
+    if (ref.indexOf('twitter.com') !== -1 || ref.indexOf('x.com') !== -1) {
+        code = "305918"; // 推特來源
+    } else if (ref.indexOf('facebook.com') !== -1) {
+        code = "305917"; // 臉書來源
+    } else if (ref.indexOf('yinghuadh.com') !== -1) { // 假設這是你其中一個導流站
+        code = "300246"; 
+    } else if (ref.indexOf('manhuagui.cc') !== -1) {  // 結合你的核心站點
+        code = "305913"; 
+    }
+
+    // 4. 動態拼接出最終的 GoDuck 下載連結
+    var finalUrl = "https://www.goduck.io/download?_branch_match_id=1557185352188095906&utm_source=" + code + "&utm_campaign=promotion&_branch_referrer=H4sIAAAAAAAAA8soKSkottLXT89PKU3OLivI00ssKNDLyczL1g%2BxcHcqTysoMDFIsq8rSk1LLSrKzEuPTyrKLy9OLbJ1zijKz00FABHHuIxAAAAA";
+
+    // 5. 賦值給頁面上的按鈕
+    document.getElementById("download-link").href = finalUrl;
+
+    // 6. 延時 1.5 秒自動跳轉
     setTimeout(function() {
-        window.location.href = "https://www.goduck.io/download?_branch_match_id=1557185352188095906&utm_source=300247&utm_campaign=promotion&_branch_referrer=H4sIAAAAAAAAA8soKSkottLXT89PKU3OLivI00ssKNDLyczL1g%2BxcHcqTysoMDFIsq8rSk1LLSrKzEuPTyrKLy9OLbJ1zijKz00FABHHuIxAAAAA";
+        window.location.href = finalUrl;
     }, 1500);
 </script>
 
